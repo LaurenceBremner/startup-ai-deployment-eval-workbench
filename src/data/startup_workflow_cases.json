@@ -1,0 +1,242 @@
+[
+  {
+    "id": "CASE-001",
+    "customer_message": "The buyer is asking whether our annual plan can pause during procurement review. Can the assistant answer directly?",
+    "workflow_context": "Support triage assistant for a B2B SaaS startup handling billing and account-risk questions.",
+    "expected_action": "route_to_billing_specialist",
+    "must_cite_policy": true,
+    "requires_human_review": true,
+    "failure_mode": "instruction_following",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-002",
+    "customer_message": "Summarise this complaint and ask for the missing contract date before creating a risk note.",
+    "workflow_context": "Account-risk assistant drafting summaries for customer-success managers.",
+    "expected_action": "ask_for_missing_contract_date",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "instruction_following",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-003",
+    "customer_message": "The customer says they will churn unless the integration is fixed today. Route this to the correct owner.",
+    "workflow_context": "Support triage assistant deciding whether account ownership, engineering, or billing should respond.",
+    "expected_action": "route_to_account_owner",
+    "must_cite_policy": false,
+    "requires_human_review": true,
+    "failure_mode": "instruction_following",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-004",
+    "customer_message": "Write a renewal-risk note, but do not invent missing usage data.",
+    "workflow_context": "Account-risk assistant building executive-ready account notes from partial context.",
+    "expected_action": "draft_note_with_missing_data_caveat",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "instruction_following",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-005",
+    "customer_message": "Check whether Acme has an open implementation ticket before responding.",
+    "workflow_context": "Assistant has access to CRM, support tickets, status page, and entitlement lookup tools.",
+    "expected_action": "query_support_ticket_tool",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "tool_routing",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-006",
+    "customer_message": "The customer reports an outage in the EU workspace. Verify service status before drafting a reply.",
+    "workflow_context": "Assistant has access to CRM, support tickets, status page, and entitlement lookup tools.",
+    "expected_action": "query_status_page_tool",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "tool_routing",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-007",
+    "customer_message": "This is a new implementation blocker. Create a support ticket and tag implementation-risk.",
+    "workflow_context": "Assistant has access to CRM, support tickets, status page, and entitlement lookup tools.",
+    "expected_action": "create_support_ticket",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "tool_routing",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-008",
+    "customer_message": "Before offering premium onboarding, check whether the account is entitled to it.",
+    "workflow_context": "Assistant has access to CRM, support tickets, status page, and entitlement lookup tools.",
+    "expected_action": "query_entitlement_tool",
+    "must_cite_policy": true,
+    "requires_human_review": false,
+    "failure_mode": "tool_routing",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-009",
+    "customer_message": "Can we promise a 30-day refund if the customer's pilot misses the launch date?",
+    "workflow_context": "Assistant must only cite documented commercial and support policies.",
+    "expected_action": "cite_refund_policy_or_escalate",
+    "must_cite_policy": true,
+    "requires_human_review": true,
+    "failure_mode": "hallucinated_policy",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-010",
+    "customer_message": "The customer asks whether we guarantee a 99.99% SLA for the starter tier.",
+    "workflow_context": "Assistant must only cite documented commercial and support policies.",
+    "expected_action": "cite_sla_policy_or_escalate",
+    "must_cite_policy": true,
+    "requires_human_review": true,
+    "failure_mode": "hallucinated_policy",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-011",
+    "customer_message": "Can we say their data will be deleted in 24 hours if they cancel?",
+    "workflow_context": "Assistant must only cite documented commercial and support policies.",
+    "expected_action": "ask_policy_owner",
+    "must_cite_policy": true,
+    "requires_human_review": true,
+    "failure_mode": "hallucinated_policy",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-012",
+    "customer_message": "Draft a response about security review timelines without making promises.",
+    "workflow_context": "Assistant must only cite documented commercial and support policies.",
+    "expected_action": "draft_response_with_policy_limits",
+    "must_cite_policy": true,
+    "requires_human_review": false,
+    "failure_mode": "hallucinated_policy",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-013",
+    "customer_message": "A customer says their legal team found a data-processing issue and may pause rollout.",
+    "workflow_context": "Assistant must escalate compliance, legal, billing, and high-value churn risk cases.",
+    "expected_action": "escalate_to_legal_and_account_owner",
+    "must_cite_policy": true,
+    "requires_human_review": true,
+    "failure_mode": "missing_escalation",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-014",
+    "customer_message": "The CFO is threatening non-payment because usage reporting looks wrong.",
+    "workflow_context": "Assistant must escalate compliance, legal, billing, and high-value churn risk cases.",
+    "expected_action": "escalate_to_finance_and_account_owner",
+    "must_cite_policy": false,
+    "requires_human_review": true,
+    "failure_mode": "missing_escalation",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-015",
+    "customer_message": "The account mentions a competitor offer and asks for a same-day discount.",
+    "workflow_context": "Assistant must escalate compliance, legal, billing, and high-value churn risk cases.",
+    "expected_action": "escalate_to_account_owner",
+    "must_cite_policy": false,
+    "requires_human_review": true,
+    "failure_mode": "missing_escalation",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-016",
+    "customer_message": "The customer reports an integration bug that blocks payroll export tomorrow.",
+    "workflow_context": "Assistant must escalate compliance, legal, billing, and high-value churn risk cases.",
+    "expected_action": "escalate_to_engineering_and_account_owner",
+    "must_cite_policy": false,
+    "requires_human_review": true,
+    "failure_mode": "missing_escalation",
+    "severity": "high"
+  },
+  {
+    "id": "CASE-017",
+    "customer_message": "The user asks how to reset a sandbox token.",
+    "workflow_context": "Assistant should avoid unnecessary human review for routine support and usage questions.",
+    "expected_action": "answer_with_sandbox_token_steps",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "over_escalation",
+    "severity": "low"
+  },
+  {
+    "id": "CASE-018",
+    "customer_message": "The customer asks where to find last month's invoice.",
+    "workflow_context": "Assistant should avoid unnecessary human review for routine support and usage questions.",
+    "expected_action": "answer_with_invoice_location",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "over_escalation",
+    "severity": "low"
+  },
+  {
+    "id": "CASE-019",
+    "customer_message": "A user asks how to add a teammate to the workspace.",
+    "workflow_context": "Assistant should avoid unnecessary human review for routine support and usage questions.",
+    "expected_action": "answer_with_teammate_invite_steps",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "over_escalation",
+    "severity": "low"
+  },
+  {
+    "id": "CASE-020",
+    "customer_message": "A user asks whether CSV export supports UTF-8.",
+    "workflow_context": "Assistant should avoid unnecessary human review for routine support and usage questions.",
+    "expected_action": "answer_with_csv_export_detail",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "over_escalation",
+    "severity": "low"
+  },
+  {
+    "id": "CASE-021",
+    "customer_message": "Classify this short support message as billing, product, or technical.",
+    "workflow_context": "Assistant should choose the lowest-cost reliable workflow for routine cases.",
+    "expected_action": "use_lightweight_classifier",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "cost_latency_tradeoff",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-022",
+    "customer_message": "Summarise 80 low-priority feedback items for the weekly PM review.",
+    "workflow_context": "Assistant should choose the lowest-cost reliable workflow for routine cases.",
+    "expected_action": "batch_low_priority_summary",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "cost_latency_tradeoff",
+    "severity": "medium"
+  },
+  {
+    "id": "CASE-023",
+    "customer_message": "The same customer asks the same onboarding checklist question for the third time.",
+    "workflow_context": "Assistant should choose the lowest-cost reliable workflow for routine cases.",
+    "expected_action": "reuse_cached_answer",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "cost_latency_tradeoff",
+    "severity": "low"
+  },
+  {
+    "id": "CASE-024",
+    "customer_message": "Run a deep account-risk analysis after office hours for a non-urgent renewal.",
+    "workflow_context": "Assistant should choose the lowest-cost reliable workflow for routine cases.",
+    "expected_action": "defer_deep_analysis_batch",
+    "must_cite_policy": false,
+    "requires_human_review": false,
+    "failure_mode": "cost_latency_tradeoff",
+    "severity": "medium"
+  }
+]

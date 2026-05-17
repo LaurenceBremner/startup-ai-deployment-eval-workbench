@@ -1,0 +1,31 @@
+{
+  "generated_from": "src/data/startup_workflow_cases.json and src/data/model_runs.json",
+  "baseline_summary": {
+    "label": "Baseline prompt",
+    "pass_rate": 33,
+    "average_score": 61,
+    "human_review_rate": 33,
+    "hallucinated_policy_count": 5,
+    "missed_escalation_count": 7,
+    "known_failures": [
+      "hallucinated policy references",
+      "missed high-severity escalations",
+      "unnecessary review for routine questions",
+      "expensive slow path for low-risk work"
+    ]
+  },
+  "revised_summary": {
+    "label": "Eval-guided variant",
+    "pass_rate": 92,
+    "average_score": 97,
+    "human_review_rate": 29,
+    "hallucinated_policy_count": 1,
+    "missed_escalation_count": 1,
+    "high_severity_failures": 2,
+    "remaining_blockers": [
+      "one hallucinated SLA phrase",
+      "one missed human-review gate on finance/account risk"
+    ]
+  },
+  "decision": "Ship behind human-review gate only after fixing high-severity hallucinated-policy and missed-escalation cases."
+}
